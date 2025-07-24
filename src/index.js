@@ -56,6 +56,19 @@ function handleSubmitTaskClick(event) {
 
   displayController(listElement, defaultList);
   modal.classList.add('hidden');
+  localStorage.setItem('to-do-list', JSON.stringify(defaultList));
+}
+
+function handlePageLoad(event) {
+  const listExists = localStorage.getItem('to-do-list');
+
+  if (listExists) {
+    const taskList = JSON.parse(listExists);
+
+    console.log(taskList);
+    listElement.innerHTML = '';
+    displayController(listElement, taskList);
+  }
 }
 
 addTaskButton.addEventListener('click', handleAddTaskClick);
@@ -63,3 +76,5 @@ addTaskButton.addEventListener('click', handleAddTaskClick);
 modal.addEventListener('click', handleModalClick);
 
 submitTaskButton.addEventListener('click', handleSubmitTaskClick);
+
+addEventListener('load', handlePageLoad);

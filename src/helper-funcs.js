@@ -3,24 +3,23 @@ function pushItemToList(list, item) {
 }
 
 function displayController(parentNode, tasks) {
-  // create nodes
-  const listItemNode = document.createElement('li');
-  const titleNode = document.createElement('h3');
-  const descriptionNode = document.createElement('p');
-  const dueDateNode = document.createElement('p');
-  const priorityNode = document.createElement('p');
-
-  // set classes
-
-  listItemNode.className = 'list';
-  titleNode.className = 'title';
-  descriptionNode.className = 'description';
-  dueDateNode.className = 'due-date';
-  priorityNode.className = 'priority';
-
-  // set text content
-
   for (const task of tasks) {
+    // create nodes
+
+    // set text content
+    const listItemNode = document.createElement('li');
+    const titleNode = document.createElement('h3');
+    const descriptionNode = document.createElement('p');
+    const dueDateNode = document.createElement('p');
+    const priorityNode = document.createElement('p');
+
+    // set classes
+
+    listItemNode.className = 'list';
+    titleNode.className = 'title';
+    descriptionNode.className = 'description';
+    dueDateNode.className = 'due-date';
+    priorityNode.className = 'priority';
     const { title, description, dueDate, priority } = task;
 
     titleNode.textContent = title;
