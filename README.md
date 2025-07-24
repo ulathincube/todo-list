@@ -1,5 +1,4 @@
-# My Starter Template + My Webpack Config File
+# TODO List
 
-## This is a starter template for my projects.
-
-- Use with care.
+1. Factory functions to create objects.
+2. List should have a projects list projects - [].
