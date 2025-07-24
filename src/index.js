@@ -1,9 +1,12 @@
 import ToDo from './todo';
 import './style.css';
-import { pushItemToList } from './helper-funcs';
+import { pushItemToList, displayController } from './helper-funcs';
 
 const addTaskButton = document.querySelector('.add-task');
 const modal = document.querySelector('.modal');
+const submitTaskButton = document.querySelector('.submit');
+const formElement = document.querySelector('.form');
+const listElement = document.querySelector('.list');
 
 //   constructor(title, description, dueDate, priority)
 
@@ -13,7 +16,7 @@ const projectsList = [];
 const washClothes = new ToDo(
   'wash clothes',
   'Wash my laundry for the week!',
-  'tomorrow',
+  '08:00',
   1
 );
 
@@ -26,11 +29,37 @@ function handleAddTaskClick(event) {
   modal.classList.remove('hidden');
 }
 
-addTaskButton.addEventListener('click', handleAddTaskClick);
-
-modal.addEventListener('click', event => {
+function handleModalClick(event) {
   if (event.target !== modal) {
     return;
   }
   modal.classList.add('hidden');
-});
+}
+
+function handleSubmitTaskClick(event) {
+  event.preventDefault();
+  const inputFields = formElement.querySelectorAll('input');
+
+  // get data
+  const inputValues = [];
+
+  for (let i = 0; i < inputFields.length; i++) {
+    inputValues.push(inputFields[i].value);
+  }
+
+  const [title, description, dueDate, priority] = inputValues;
+
+  const newTask = new ToDo(title, description, dueDate, priority);
+
+  pushItemToList(defaultList, newTask);
+  console.log(defaultList);
+
+  displayController(listElement, defaultList);
+  modal.classList.add('hidden');
+}
+
+addTaskButton.addEventListener('click', handleAddTaskClick);
+
+modal.addEventListener('click', handleModalClick);
+
+submitTaskButton.addEventListener('click', handleSubmitTaskClick);
